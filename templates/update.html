@@ -1,0 +1,24 @@
+<!-- base.htmlを継承 -->
+{% extends "base.html" %}
+
+<!-- base.htmlの block bodyに挿入される -->
+{% block body %}
+<!-- /update/{{ post.id }}に内容を飛ばす -->
+<form class="m-5" action="/update/{{ post.id }}" method="POST">
+    <div class="form-group">
+        <label for="title">Title</label>
+        <input type="text"  class="form-control" name="title" value="{{ post.title }}">
+    </div>
+    <div class="form-group">
+        <label for="detail">Detail</label>
+        <input type="text"  class="form-control" name="detail" value="{{ post.detail }}">
+    </div>
+    <div class="form-group">
+        <label for="due">Due</label>
+        <input type="date" class="form-control" name="due" value="{{ post.due }}" required>        
+    </div>
+
+    <button type="submit" class="btn btn-primary" value="Create">Change</button>
+    <a class="btn btn-outline-warning" href="/" role="button">CANCEL</a>
+</form>
+{% endblock %}

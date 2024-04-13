@@ -1,0 +1,26 @@
+<!-- base.htmlを継承 -->
+{% extends "base.html" %}
+
+<!-- base.htmlの block bodyに挿入される -->
+{% block body %}
+<h1>トップページ</h1>
+<a class="btn btn-primary btn-lg m-5" href="/create" role="button">CREATE NEW TASK</a>
+{% for post in posts %}
+<div class="card w-50 mb-3" style="margin: auto;">
+    <div class="card-body">
+        <!-- もしタスクの日付が卿より前なら -->
+        {% if post.due.date() < today %}
+        <div class="alert alert-danger" role="alert">
+            期限が切れています!!
+        </div>
+        {% endif %}
+        <h2 class="card-title">タイトル : {{ post.title }}</h2>
+        <p>期限 : {{ post.due.date() }}</p>
+        <a class="btn btn-secondary btn-sm" href="detail/{{ post.id }}" roll="button">Detail</a>
+        <a class="btn btn-success btn-sm" href="update/{{ post.id }}" roll="button">Update</a>
+        <a class="btn btn-danger btn-sm" href="delete/{{ post.id }}" roll="button">Delete</a>
+    </div>
+</div>
+
+{% endfor %}
+{% endblock %}
